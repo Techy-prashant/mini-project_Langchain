@@ -331,10 +331,12 @@ Protecting API credentials is a core requirement of this repository:
 
 ---
 
-## 📄 License & Author
+## 📄 License & Community Links
 
-Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for full license text.
-
+- **License:** Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for complete details.
+- **Security Policy:** See [`SECURITY.md`](SECURITY.md) for vulnerability disclosure and secret isolation guidelines.
+- **Contributing:** See [`CONTRIBUTING.md`](CONTRIBUTING.md) for developer guidelines and pull request checklists.
+- **Changelog:** See [`CHANGELOG.md`](CHANGELOG.md) for version release notes.
 - **Author:** [Prashant](https://github.com/Techy-prashant)
 - **Repository:** [`Techy-prashant/mini-project_Landchain`](https://github.com/Techy-prashant/mini-project_Landchain.git)
 
