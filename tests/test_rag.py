@@ -53,5 +53,28 @@ class TestTechNovaRAG(unittest.TestCase):
         self.assertTrue(any("parental leave" in q.lower() for q in DEFAULT_TEST_QUESTIONS))
 
 
+    def test_missing_api_key_raises_value_error(self):
+        """Verify that an invalid or placeholder API key raises a clear ValueError."""
+        rag_invalid = TechNovaRAG(api_key="your_google_gemini_api_key_here")
+        with self.assertRaises(ValueError) as ctx:
+            rag_invalid.initialize_pipeline()
+        self.assertIn("GOOGLE_API_KEY is not configured", str(ctx.exception))
+
+    def test_top_k_parameter_configuration(self):
+        """Verify configurable top_k retrieval parameter."""
+        custom_rag = TechNovaRAG(top_k=5)
+        self.assertEqual(custom_rag.top_k, 5)
+
+    def test_in_code_policy_document_clauses(self):
+        """Verify that all 5 key policy clauses are defined in the default document."""
+        chunks = self.rag.load_and_split()
+        combined_text = " ".join([c.page_content for c in chunks])
+        self.assertIn("Annual Leave", combined_text)
+        self.assertIn("Work From Home", combined_text)
+        self.assertIn("Working Hours", combined_text)
+        self.assertIn("Sick Leave", combined_text)
+        self.assertIn("Learning Allowance", combined_text)
+
+
 if __name__ == "__main__":
     unittest.main()
