@@ -28,7 +28,7 @@ elif env_default.exists():
 from rag_engine import TechNovaRAG, DEFAULT_TEST_QUESTIONS
 
 
-BANNER = """
+BANNER = r"""
 ================================================================================
    ______           __    _   __                 ____  ___   ______
   /_  __/__  _____ / /_  / | / /___ _   ______ _/ __ \/   | / ____/
@@ -120,6 +120,13 @@ def main():
         type=str,
         default=str(BASE_DIR / "technova_policy.txt"),
         help="Path to external policy text file"
+    )
+    parser.add_argument(
+        "--version",
+        "-v",
+        action="version",
+        version="TechNova RAG Policy Assistant v1.0.0",
+        help="Show program version and exit"
     )
 
     args = parser.parse_args()
