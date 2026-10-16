@@ -1,0 +1,57 @@
+"""
+Unit tests for TechNova Solutions RAG pipeline components.
+Tests text loading, chunking strategy, prompt formatting, and configuration
+without requiring live network API calls.
+"""
+
+import unittest
+from rag_engine import TechNovaRAG, STRICT_RAG_PROMPT_TEMPLATE, DEFAULT_TEST_QUESTIONS
+
+
+class TestTechNovaRAG(unittest.TestCase):
+    def setUp(self):
+        self.rag = TechNovaRAG(
+            api_key="mock_test_key_not_real",
+            chunk_size=300,
+            chunk_overlap=50,
+            top_k=3
+        )
+
+    def test_load_and_split_policy(self):
+        """Verify that document loading and semantic chunking produces expected chunks."""
+        chunks = self.rag.load_and_split()
+        self.assertGreater(len(chunks), 0)
+        # Should be between 4 and 8 chunks with chunk_size 300
+        self.assertGreaterEqual(len(chunks), 5)
+        self.assertLessEqual(len(chunks), 10)
+
+        # Ensure no chunk exceeds the chunk_size significantly
+        for chunk in chunks:
+            self.assertIsNotNone(chunk.page_content)
+            self.assertGreater(len(chunk.page_content), 10)
+
+    def test_format_context_chunks(self):
+        """Verify helper formatting structure for retrieved context."""
+        chunks = self.rag.load_and_split()
+        formatted = self.rag.format_context_chunks(chunks[:3])
+        self.assertIn("[Context Chunk 1]:", formatted)
+        self.assertIn("[Context Chunk 2]:", formatted)
+        self.assertIn("[Context Chunk 3]:", formatted)
+
+    def test_prompt_template_guidelines(self):
+        """Verify strict prompt template guidelines for anti-hallucination."""
+        self.assertIn("Never invent, assume, or extrapolate", STRICT_RAG_PROMPT_TEMPLATE)
+        self.assertIn("explicitly state that TechNova Solutions' policy document does not provide", STRICT_RAG_PROMPT_TEMPLATE)
+        self.assertIn("{context}", STRICT_RAG_PROMPT_TEMPLATE)
+        self.assertIn("{question}", STRICT_RAG_PROMPT_TEMPLATE)
+
+    def test_default_test_questions(self):
+        """Verify prescribed test questions count and contents."""
+        self.assertEqual(len(DEFAULT_TEST_QUESTIONS), 3)
+        self.assertTrue(any("annual leave" in q.lower() for q in DEFAULT_TEST_QUESTIONS))
+        self.assertTrue(any("remotely on wednesday" in q.lower() for q in DEFAULT_TEST_QUESTIONS))
+        self.assertTrue(any("parental leave" in q.lower() for q in DEFAULT_TEST_QUESTIONS))
+
+
+if __name__ == "__main__":
+    unittest.main()
