@@ -20,6 +20,9 @@ from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
+# Type alias for RAG query results
+QueryResult = Dict[str, Any]
+
 
 # Default in-code policy document ensuring zero external dependency failure
 DEFAULT_POLICY_DOCUMENT = """TechNova Solutions - Employee Policy Document
@@ -166,7 +169,13 @@ class TechNovaRAG:
             formatted.append(f"[Context Chunk {idx}]:\n{doc.page_content.strip()}")
         return "\n\n".join(formatted)
 
-    def query(self, question: str) -> Dict[str, Any]:
+    def get_chunk_count(self) -> int:
+        """Returns the number of generated document chunks."""
+        if not self.chunks:
+            self.load_and_split()
+        return len(self.chunks)
+
+    def query(self, question: str) -> QueryResult:
         """
         Executes a RAG query: retrieves top-k chunks, generates a grounded response,
         and returns context alongside the answer.
@@ -188,3 +197,4 @@ class TechNovaRAG:
             "context_str": context_str,
             "answer": answer.strip()
         }
+
