@@ -4,8 +4,20 @@ Tests text loading, chunking strategy, prompt formatting, and configuration
 without requiring live network API calls.
 """
 
+import sys
 import unittest
+from pathlib import Path
+
+# Ensure project root and src directory are accessible on sys.path
+BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_DIR = BASE_DIR / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
 from rag_engine import TechNovaRAG, STRICT_RAG_PROMPT_TEMPLATE, DEFAULT_TEST_QUESTIONS
+from technova_rag import TechNovaRAG as PackageTechNovaRAG
 
 
 class TestTechNovaRAG(unittest.TestCase):
@@ -74,6 +86,9 @@ class TestTechNovaRAG(unittest.TestCase):
         self.assertIn("Working Hours", combined_text)
         self.assertIn("Sick Leave", combined_text)
         self.assertIn("Learning Allowance", combined_text)
+    def test_package_and_shim_compatibility(self):
+        """Verify that src.technova_rag and root rag_engine export the exact same class."""
+        self.assertIs(PackageTechNovaRAG, TechNovaRAG)
 
 
 if __name__ == "__main__":

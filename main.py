@@ -25,7 +25,14 @@ if env_local.exists():
 elif env_default.exists():
     load_dotenv(dotenv_path=env_default)
 
-from rag_engine import TechNovaRAG, DEFAULT_TEST_QUESTIONS
+SRC_DIR = BASE_DIR / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
+
+try:
+    from technova_rag import TechNovaRAG, DEFAULT_TEST_QUESTIONS
+except ImportError:
+    from rag_engine import TechNovaRAG, DEFAULT_TEST_QUESTIONS
 
 
 BANNER = r"""

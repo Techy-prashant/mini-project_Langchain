@@ -5,6 +5,20 @@ All notable changes to the **TechNova Solutions RAG System** will be documented 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-10-18
+
+### Added
+- **Modular Package Structure (`src/technova_rag`):** Re-architected pipeline into a clean package layout featuring `engine.py`, `config.py`, and `prompts.py`.
+- **Standard Packaging Configuration (`pyproject.toml`):** Added modern PEP 517/621 packaging metadata and tool configurations.
+- **Dedicated Data & Docs Directories:** Created `data/` for source policy documents and `docs/` for architecture and benchmark results.
+- **Backward-Compatible Root Facade (`rag_engine.py`):** Root-level facade re-exporting `src.technova_rag` modules to preserve legacy imports and CLI commands.
+- **Enhanced Test Discovery (`tests/__init__.py`):** Added package marker and automated compatibility unit test.
+
+### Changed
+- Standardized environment variable fallback for Gemini chat model (`GEMINI_CHAT_MODEL`).
+- Updated `main.py` to prioritize `src/technova_rag` with fallback to `rag_engine`.
+- Enhanced `README.md` repository structure and architectural overview.
+
 ## [1.0.0] - 2026-10-17
 
 ### Added

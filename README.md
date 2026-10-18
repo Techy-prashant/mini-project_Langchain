@@ -150,19 +150,38 @@ graph TD
 ```
 mini-project_Landchain/
 ├── .github/
-│   └── workflows/
-│       └── ci.yml                 # Automated CI workflow (linting, tests, secret check)
+│   ├── ISSUE_TEMPLATE/           # Bug report & feature request issue templates
+│   ├── workflows/
+│   │   └── ci.yml                # Automated CI workflow (linting, tests, secret check)
+│   └── pull_request_template.md  # Standardized PR review checklist
+├── data/
+│   └── technova_policy.txt       # Employee policy source dataset
+├── docs/
+│   ├── architecture.md           # Deep-dive architecture and design documentation
+│   └── evaluation_results.md     # Prescribed benchmark tests & verified live outputs
+├── src/
+│   └── technova_rag/             # Core modular package
+│       ├── __init__.py           # Package exports & metadata
+│       ├── config.py             # Model, chunk, & benchmark question configurations
+│       ├── engine.py             # TechNovaRAG pipeline lifecycle & LCEL chain
+│       └── prompts.py            # Strict anti-hallucination prompt templates
 ├── tests/
-│   └── test_rag.py                # Unit tests for chunking, retriever, and prompts
-├── .env.example                   # Safe template for Google Gemini API key configuration
-├── .gitignore                     # Comprehensive rules isolating keys, venv, and caches
-├── 24f2001089.py                  # Self-contained RAG submission script with live outputs
-├── LICENSE                        # MIT License
-├── main.py                        # Interactive CLI assistant & benchmark evaluator
-├── rag_engine.py                  # Modular TechNovaRAG class implementation
-├── requirements.txt               # Pinned project dependencies
-├── technova_policy.txt            # Employee policy source dataset
-└── README.md                      # Comprehensive project documentation
+│   ├── __init__.py               # Test package discovery marker
+│   └── test_rag.py               # Comprehensive unit test suite (100% offline)
+├── .editorconfig                 # Multi-editor formatting standards
+├── .env.example                  # Safe template for Google Gemini API key configuration
+├── .gitattributes                # Consistent line endings configuration
+├── .gitignore                    # Comprehensive rules isolating keys, venv, and caches
+├── 24f2001089.py                 # Self-contained RAG submission script with live outputs
+├── CHANGELOG.md                  # Detailed version release notes
+├── CONTRIBUTING.md               # Contribution guidelines & standards
+├── LICENSE                       # MIT License
+├── main.py                       # Interactive CLI assistant & benchmark evaluator
+├── pyproject.toml                # Modern PEP 517/621 Python packaging metadata
+├── rag_engine.py                 # Backward-compatibility facade to src/technova_rag
+├── requirements.txt              # Pinned project dependencies
+├── technova_policy.txt           # Root policy text for legacy path compatibility
+└── README.md                     # Comprehensive project documentation
 ```
 
 ---
