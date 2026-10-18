@@ -9,7 +9,7 @@
 [![Google Gemini](https://img.shields.io/badge/LLM-Google%20Gemini-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Security: Zero Secrets](https://img.shields.io/badge/Security-Zero%20API%20Leak-success?logo=githubactions&logoColor=white)](#-security--credentials-isolation)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Techy-prashant/mini-project_Landchain/pulls)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Techy-prashant/mini-project_Langchain/pulls)
 
 <br/>
 
@@ -148,7 +148,7 @@ graph TD
 ## 📁 Repository Structure
 
 ```
-mini-project_Landchain/
+mini-project_Langchain/
 ├── .github/
 │   ├── ISSUE_TEMPLATE/           # Bug report & feature request issue templates
 │   ├── workflows/
@@ -190,8 +190,8 @@ mini-project_Landchain/
 
 ### 1. Clone Repository
 ```bash
-git clone https://github.com/Techy-prashant/mini-project_Landchain.git
-cd mini-project_Landchain
+git clone https://github.com/Techy-prashant/mini-project_Langchain.git
+cd mini-project_Langchain
 ```
 
 ### 2. Create Virtual Environment
@@ -357,7 +357,7 @@ Protecting API credentials is a core requirement of this repository:
 - **Contributing:** See [`CONTRIBUTING.md`](CONTRIBUTING.md) for developer guidelines and pull request checklists.
 - **Changelog:** See [`CHANGELOG.md`](CHANGELOG.md) for version release notes.
 - **Author:** [Prashant](https://github.com/Techy-prashant)
-- **Repository:** [`Techy-prashant/mini-project_Landchain`](https://github.com/Techy-prashant/mini-project_Landchain.git)
+- **Repository:** [`Techy-prashant/mini-project_Langchain`](https://github.com/Techy-prashant/mini-project_Langchain.git)
 
 ---
 
